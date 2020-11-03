@@ -11,6 +11,7 @@ public class Videojuego implements Serializable {
     private String recojo;
     private Usuario dueñoOriginal;
     private String estado;
+    private String respuesta = null;
 
     public String getTitulo() {
         return titulo;
@@ -58,5 +59,13 @@ public class Videojuego implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 }

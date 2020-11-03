@@ -33,4 +33,13 @@
     <string name="consola">Consola</string>
     <string name="reservar">Reservar</string>
     <string name="presionar">presionar</string>
+    <string name="solicitar">solicitar</string>
+    <string name="direccion">Direccion</string>
+    <string name="aqui_se_recojera_la_imagen">Aqui se recojera la imagen</string>
+    <string name="ofrecer">Ofrecer</string>
+    <string name="cargar_imagen_del_juego">Cargar imagen del juego</string>
+    <string name="a_adir_imagen">Añadir imagen</string>
+    <string name="imagen_a_adida">Imagen añadida</string>
+    <string name="accion">accion</string>
+    <string name="estado">Estado</string>
 </resources>

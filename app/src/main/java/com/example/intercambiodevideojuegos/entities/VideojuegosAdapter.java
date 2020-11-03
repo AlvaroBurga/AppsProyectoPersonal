@@ -1,20 +1,19 @@
 package com.example.intercambiodevideojuegos.entities;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.intercambiodevideojuegos.R;
-import com.example.intercambiodevideojuegos.usuario.ReservarVideojuego;
 
 public class VideojuegosAdapter extends RecyclerView.Adapter<VideojuegosAdapter.ViewHolder> {
 
@@ -22,13 +21,15 @@ public class VideojuegosAdapter extends RecyclerView.Adapter<VideojuegosAdapter.
     private Context context;
     private String filtro;
     private String tipoFiltro;
+    private Usuario sesion;
 
 
-    public VideojuegosAdapter(Videojuego[] videojuegos, Context context, @Nullable String filtro, @Nullable String tipo) {
+    public VideojuegosAdapter(Videojuego[] videojuegos, Context context, Usuario sesion,@Nullable String filtro, @Nullable String tipo) {
         this.videojuegos = videojuegos;
         this.context = context;
         this.filtro=filtro;
         this.tipoFiltro =tipo;
+        this.sesion=sesion;
     }
 
     @NonNull
@@ -46,6 +47,7 @@ public class VideojuegosAdapter extends RecyclerView.Adapter<VideojuegosAdapter.
         holder.context=context;
         holder.filtro=filtro;
         holder.tipoFiltro=tipoFiltro;
+        holder.sesion = sesion;
     }
 
     @Override
@@ -58,6 +60,7 @@ public class VideojuegosAdapter extends RecyclerView.Adapter<VideojuegosAdapter.
         Videojuego videojuego;
         String filtro;
         String tipoFiltro;
+        Usuario sesion;
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -92,9 +95,35 @@ public class VideojuegosAdapter extends RecyclerView.Adapter<VideojuegosAdapter.
             accion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context.getApplicationContext(), ReservarVideojuego.class);
-                    intent.putExtra("juego",videojuego);
-                    context.startActivity(intent);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    if(sesion.getPuntos()>0)
+                    {
+                        builder.setTitle("Confirmar Solicitud");
+                        builder.setMessage("Se ha solicitado reservar el videojuego "+ videojuego.getTitulo() + " para la consola " + videojuego.getConsola());
+                        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                sesion.setPuntos(sesion.getPuntos()-1);
+                                videojuego.setEstado("Intercambiado");
+                                //Refrescar la pantalla
+                            }
+                        });
+                        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                    }
+                    else {
+                        builder.setTitle("Puntos insuficientes");
+                        builder.setMessage("No tiene suficientes puntos para solicitaer el videojuego " + videojuego.getTitulo() +
+                                " para la consola " + videojuego.getConsola() + ". Se recomienda ofrecer un nuevo juego");
+                        builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                    }
                 }
             });
 

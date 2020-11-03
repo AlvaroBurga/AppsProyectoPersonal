@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/filtroTitulo"
         app:layout_constraintStart_toEndOf="@+id/filtroTitulo"
         app:layout_constraintTop_toTopOf="@+id/filtroTitulo"
-        app:srcCompat="@drawable/Lupa" />
+        app:srcCompat="@drawable/lupa" />
 
     <Spinner
         android:id="@+id/buscarConsola"

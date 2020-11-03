@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.intercambiodevideojuegos.R;
+import com.example.intercambiodevideojuegos.entities.Usuario;
 
 public class MenuUsuario extends AppCompatActivity {
 
@@ -16,9 +18,14 @@ public class MenuUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_usuario);
 
+        Intent intent = getIntent();
+        Usuario usuario = (Usuario) intent.getSerializableExtra("sesion");
+
         Button juegosDisponibles = findViewById(R.id.juegosDisponiblesMenuU);
         Button ofrecerJuegos = findViewById(R.id.ofrecerJuegosMenuU);
         Button juegosOfrecidos = findViewById(R.id.juegosOfrecidoMenuU);
+        TextView bienvenida = findViewById(R.id.bienvenidaMenuUsuario);
+        bienvenida.setText( "Bienvenido "+ usuario.getNombre() + " " + usuario.getApellido());
 
         juegosDisponibles.setOnClickListener(new View.OnClickListener() {
             @Override

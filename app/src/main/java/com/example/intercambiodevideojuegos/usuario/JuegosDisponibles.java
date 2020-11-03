@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.example.intercambiodevideojuegos.R;
+import com.example.intercambiodevideojuegos.entities.Usuario;
 import com.example.intercambiodevideojuegos.entities.Videojuego;
 import com.example.intercambiodevideojuegos.entities.VideojuegosAdapter;
 
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 public class JuegosDisponibles extends AppCompatActivity {
     Videojuego[] videojuegos;
+    Usuario sesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class JuegosDisponibles extends AppCompatActivity {
         //Obtener la lista de videojuegos disponibles (get)
 
         //Mostrarlos los videojuegos en el recycler view
-        VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this,null,null);
+        VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this, sesion,null,null);
         RecyclerView rv = findViewById(R.id.listaJuegosDisponiblesU);
         rv.setAdapter(videojuegosAdapter);
         rv.setLayoutManager(new LinearLayoutManager(JuegosDisponibles.this));
@@ -41,7 +43,7 @@ public class JuegosDisponibles extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String filtro = filtroTitulo.getText().toString();
-                VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this,filtro,"c");
+                VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this,sesion,filtro,"c");
                 RecyclerView rv = findViewById(R.id.listaJuegosDisponiblesU);
                 rv.setAdapter(videojuegosAdapter);
                 rv.setLayoutManager(new LinearLayoutManager(JuegosDisponibles.this));
@@ -70,7 +72,7 @@ public class JuegosDisponibles extends AppCompatActivity {
                 Object item = parent.getSelectedItem();
                 if(item != null) {
                     String consola = item.toString();
-                    VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this,consola,"t");
+                    VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this,sesion,consola,"t");
                     RecyclerView rv = findViewById(R.id.listaJuegosDisponiblesU);
                     rv.setAdapter(videojuegosAdapter);
                     rv.setLayoutManager(new LinearLayoutManager(JuegosDisponibles.this));
