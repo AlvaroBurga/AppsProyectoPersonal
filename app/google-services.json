@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "192906809110",
+    "firebase_url": "https://intercambio-de-videojuegos-default-rtdb.firebaseio.com",
+    "project_id": "intercambio-de-videojuegos",
+    "storage_bucket": "intercambio-de-videojuegos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192906809110:android:30954c900e122b0ff70a37",
+        "android_client_info": {
+          "package_name": "com.example.intercambiodevideojuegos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192906809110-sr985aaa10b2028oc0knmon2c33ekefc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.intercambiodevideojuegos",
+            "certificate_hash": "2ba531a3c8e290672b0c0789f2754cabdc807a7d"
+          }
+        },
+        {
+          "client_id": "192906809110-46ou6d9qnch5mr0qjr2i60p4t4e57ber.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWr8EunOmfMQbTwCyVExDMM00s13qPY04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192906809110-46ou6d9qnch5mr0qjr2i60p4t4e57ber.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

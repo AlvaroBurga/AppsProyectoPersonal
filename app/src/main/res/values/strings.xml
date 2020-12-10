@@ -42,4 +42,12 @@
     <string name="imagen_a_adida">Imagen añadida</string>
     <string name="accion">accion</string>
     <string name="estado">Estado</string>
+    <string name="due_o">Dueño:</string>
+    <string name="poner_nombre_y_apellido_del_due_o">Poner nombre y apellido del dueño</string>
+    <string name="aceptar">aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="due_o2">Dueño</string>
+    <string name="se_le_ha_enviado_un_correo_para_la_verificaci_n">Se le ha enviado un correo para la verificación</string>
+    <string name="ya_verifique_mi_email">Ya verifique mi email</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
 </resources>

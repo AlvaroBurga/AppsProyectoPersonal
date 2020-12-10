@@ -1,4 +1,4 @@
-package com.example.intercambiodevideojuegos.entities;
+package com.example.intercambiodevideojuegos.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,10 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.intercambiodevideojuegos.R;
+import com.example.intercambiodevideojuegos.entities.Usuario;
+import com.example.intercambiodevideojuegos.entities.Videojuego;
 
 public class HistorialVideojuegoAdapter  extends RecyclerView.Adapter<HistorialVideojuegoAdapter.ViewHolder> {
     private Videojuego[] videojuegos;
@@ -59,15 +60,14 @@ public class HistorialVideojuegoAdapter  extends RecyclerView.Adapter<HistorialV
             super(itemView);
 
             //Se llena el view holder
-            TextView titulo = itemView.findViewById(R.id.tituloVideojuegoHistorial);
-            TextView consola = itemView.findViewById(R.id.videojuegoHistorialConsola);
+            TextView titulo = itemView.findViewById(R.id.tituloVideojuegoOferta);
+            TextView consola = itemView.findViewById(R.id.videojuegoOfertaConsola);
             TextView estado = itemView.findViewById(R.id.estadoVideojuegoHistorial);
-            ImageView imagen = itemView.findViewById(R.id.imagenVideojuegoHistorial);
-            Button accion = itemView.findViewById(R.id.accionVideojuegoHistorial);
+            ImageView imagen = itemView.findViewById(R.id.imagenVideojuegoOferta);
+            Button accion = itemView.findViewById(R.id.aceptarVideojuegoOferta);
 
             titulo.setText(videojuego.getTitulo());
             consola.setText(videojuego.getConsola());
-            imagen.setImageURI(videojuego.getFoto());
 
             if (videojuego.getEstado().equalsIgnoreCase("borrado"))
             {

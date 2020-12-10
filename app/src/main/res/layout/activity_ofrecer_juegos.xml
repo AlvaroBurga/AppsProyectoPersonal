@@ -79,9 +79,10 @@
 
     <ImageButton
         android:id="@+id/agregarImagenOfrecer"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="43dp"
+        android:layout_height="31dp"
         android:layout_marginStart="16dp"
+        android:background="#63673AB7"
         android:contentDescription="@string/a_adir_imagen"
         app:layout_constraintBottom_toBottomOf="@+id/cidj"
         app:layout_constraintStart_toEndOf="@+id/cidj"

@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".admin.MenuAdmin">
 
+    <TextView
+        android:id="@+id/bienvenidaAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Poner Mensaje de bienvenida de la sesion"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botonIrOfertas"
+        android:layout_width="340dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="32dp"
+        android:text="Ver las ofertas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bienvenidaAdmin" />
+
+    <Button
+        android:id="@+id/botonListarTodosVideojuegos"
+        android:layout_width="340dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="32dp"
+        android:text="Ver todos los videojuegos"
+        app:layout_constraintEnd_toEndOf="@+id/botonIrOfertas"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/botonIrOfertas"
+        app:layout_constraintTop_toBottomOf="@+id/botonIrOfertas" />
 </androidx.constraintlayout.widget.ConstraintLayout>

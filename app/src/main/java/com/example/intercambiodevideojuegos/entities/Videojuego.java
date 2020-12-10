@@ -5,13 +5,21 @@ import android.net.Uri;
 import java.io.Serializable;
 
 public class Videojuego implements Serializable {
+    private long id;
     private String titulo;
     private String consola;
-    private Uri foto;
     private String recojo;
     private Usuario dueñoOriginal;
     private String estado;
     private String respuesta = null;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -27,14 +35,6 @@ public class Videojuego implements Serializable {
 
     public void setConsola(String consola) {
         this.consola = consola;
-    }
-
-    public Uri getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Uri foto) {
-        this.foto = foto;
     }
 
     public String getRecojo() {

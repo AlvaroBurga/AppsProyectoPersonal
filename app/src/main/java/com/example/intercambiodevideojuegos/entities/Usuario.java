@@ -4,20 +4,17 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable {
 
-    private int id;
+    private String id;
     private String nombre;
-    private String apellido;
-    private String dni;
     private String correo;
-    private String contraseña;
-    private int puntos =0;
+    private int puntos;
     private boolean admin = false;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -35,30 +32,6 @@ public class Usuario implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
     }
 
     public int getPuntos() {

@@ -1,4 +1,4 @@
-package com.example.intercambiodevideojuegos.entities;
+package com.example.intercambiodevideojuegos.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.intercambiodevideojuegos.R;
+import com.example.intercambiodevideojuegos.entities.Usuario;
+import com.example.intercambiodevideojuegos.entities.Videojuego;
 
 public class VideojuegosAdapter extends RecyclerView.Adapter<VideojuegosAdapter.ViewHolder> {
 
@@ -90,7 +92,7 @@ public class VideojuegosAdapter extends RecyclerView.Adapter<VideojuegosAdapter.
 
             titulo.setText(videojuego.getTitulo());
             consola.setText(videojuego.getConsola());
-            imagen.setImageURI(videojuego.getFoto());
+         //   imagen.setImageURI(videojuego.getFoto());
 
             accion.setOnClickListener(new View.OnClickListener() {
                 @Override

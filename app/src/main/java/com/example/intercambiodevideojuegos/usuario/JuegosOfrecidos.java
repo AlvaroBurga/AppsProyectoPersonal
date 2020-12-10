@@ -6,15 +6,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import com.example.intercambiodevideojuegos.R;
-import com.example.intercambiodevideojuegos.entities.HistorialVideojuegoAdapter;
+import com.example.intercambiodevideojuegos.adapters.HistorialVideojuegoAdapter;
 import com.example.intercambiodevideojuegos.entities.Usuario;
 import com.example.intercambiodevideojuegos.entities.Videojuego;
-import com.example.intercambiodevideojuegos.entities.VideojuegosAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class JuegosOfrecidos extends AppCompatActivity {
 
     Videojuego[] videojuegos;
     Usuario sesion;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

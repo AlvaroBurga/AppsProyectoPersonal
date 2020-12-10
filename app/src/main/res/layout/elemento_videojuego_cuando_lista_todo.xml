@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
-        android:id="@+id/tituloVideojuegoOferta"
+        android:id="@+id/tituloVideojuegoAdmin"
         android:layout_width="68dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
@@ -14,48 +15,50 @@
         android:text="@string/titulo"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imagenVideojuegoOferta"
+        app:layout_constraintStart_toEndOf="@+id/imagenVideojuegoAdmin"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/videojuegoOfertaConsola"
+        android:id="@+id/videojuegoConsolaAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/consola"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/tituloVideojuegoOferta"
-        app:layout_constraintStart_toStartOf="@+id/tituloVideojuegoOferta"
-        app:layout_constraintTop_toBottomOf="@+id/tituloVideojuegoOferta" />
+        app:layout_constraintEnd_toEndOf="@+id/tituloVideojuegoAdmin"
+        app:layout_constraintStart_toStartOf="@+id/tituloVideojuegoAdmin"
+        app:layout_constraintTop_toBottomOf="@+id/tituloVideojuegoAdmin" />
 
     <ImageView
-        android:id="@+id/imagenVideojuegoOferta"
+        android:id="@+id/imagenVideojuegoAdmin"
         android:layout_width="66dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:contentDescription="@string/presionar"
-        app:layout_constraintBottom_toBottomOf="@+id/videojuegoOfertaConsola"
+        app:layout_constraintBottom_toBottomOf="@+id/videojuegoConsolaAdmin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tituloVideojuegoOferta"
+        app:layout_constraintTop_toTopOf="@+id/tituloVideojuegoAdmin"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/btn_dialog" />
 
-    <Button
-        android:id="@+id/aceptarVideojuegoOferta"
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/accion"
-        app:layout_constraintEnd_toEndOf="@+id/estadoVideojuegoHistorial"
-        app:layout_constraintStart_toStartOf="@+id/estadoVideojuegoHistorial"
-        app:layout_constraintTop_toBottomOf="@+id/estadoVideojuegoHistorial" />
+        android:layout_marginStart="16dp"
+        android:text="@string/due_o"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/videojuegoConsolaAdmin"
+        app:layout_constraintStart_toEndOf="@+id/tituloVideojuegoAdmin"
+        app:layout_constraintTop_toTopOf="@+id/tituloVideojuegoAdmin"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/estadoVideojuegoHistorial"
+        android:id="@+id/dueñoNombreApellido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="@string/estado"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/videojuegoOfertaConsola"
-        app:layout_constraintStart_toEndOf="@+id/tituloVideojuegoOferta"
-        app:layout_constraintTop_toTopOf="@+id/tituloVideojuegoOferta" />
+        android:layout_marginTop="8dp"
+        android:text="@string/poner_nombre_y_apellido_del_due_o"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

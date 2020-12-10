@@ -1,4 +1,4 @@
-package com.example.intercambiodevideojuegos.usuario;
+package com.example.intercambiodevideojuegos.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,41 +13,37 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.example.intercambiodevideojuegos.R;
-import com.example.intercambiodevideojuegos.entities.Usuario;
+import com.example.intercambiodevideojuegos.adapters.ListaVideojuegosAdapter;
 import com.example.intercambiodevideojuegos.entities.Videojuego;
-import com.example.intercambiodevideojuegos.adapters.VideojuegosAdapter;
 
 import java.util.ArrayList;
 
-public class JuegosDisponibles extends AppCompatActivity {
-    Videojuego[] videojuegos;
-    Usuario sesion;
+public class ListaDeJuegos extends AppCompatActivity {
 
+    Videojuego [] videojuegos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juegos_disponibles);
+        setContentView(R.layout.activity_lista_de_juegos);
 
-        //Obtener la lista de videojuegos disponibles (get)
-
+        //Obtener la lista de juegos
 
         //Mostrarlos los videojuegos en el recycler view
-        VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this, sesion,null,null);
-        RecyclerView rv = findViewById(R.id.listaJuegosDisponiblesU);
-        rv.setAdapter(videojuegosAdapter);
-        rv.setLayoutManager(new LinearLayoutManager(JuegosDisponibles.this));
+        ListaVideojuegosAdapter listaVideojuegosAdapter = new ListaVideojuegosAdapter(videojuegos, ListaDeJuegos.this,null,null);
+        RecyclerView rv = findViewById(R.id.rvTodosLosJuegos);
+        rv.setAdapter(listaVideojuegosAdapter);
+        rv.setLayoutManager(new LinearLayoutManager(ListaDeJuegos.this));
 
-        //Filtro de titulo
         final EditText filtroTitulo = findViewById(R.id.filtroTitulo);
         ImageButton lupa = findViewById(R.id.buscarTituloDisponible);
         lupa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String filtro = filtroTitulo.getText().toString();
-                VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this,sesion,filtro,"c");
-                RecyclerView rv = findViewById(R.id.listaJuegosDisponiblesU);
-                rv.setAdapter(videojuegosAdapter);
-                rv.setLayoutManager(new LinearLayoutManager(JuegosDisponibles.this));
+                ListaVideojuegosAdapter listaVideojuegosAdapter = new ListaVideojuegosAdapter(videojuegos, ListaDeJuegos.this,filtro,"t");
+                RecyclerView rv = findViewById(R.id.rvTodosLosJuegos);
+                rv.setAdapter(listaVideojuegosAdapter);
+                rv.setLayoutManager(new LinearLayoutManager(ListaDeJuegos.this));
             }
         });
 
@@ -73,10 +69,10 @@ public class JuegosDisponibles extends AppCompatActivity {
                 Object item = parent.getSelectedItem();
                 if(item != null) {
                     String consola = item.toString();
-                    VideojuegosAdapter videojuegosAdapter = new VideojuegosAdapter(videojuegos,JuegosDisponibles.this,sesion,consola,"t");
-                    RecyclerView rv = findViewById(R.id.listaJuegosDisponiblesU);
-                    rv.setAdapter(videojuegosAdapter);
-                    rv.setLayoutManager(new LinearLayoutManager(JuegosDisponibles.this));
+                    ListaVideojuegosAdapter listaVideojuegosAdapter = new ListaVideojuegosAdapter(videojuegos, ListaDeJuegos.this,consola,"c");
+                    RecyclerView rv = findViewById(R.id.rvTodosLosJuegos);
+                    rv.setAdapter(listaVideojuegosAdapter);
+                    rv.setLayoutManager(new LinearLayoutManager(ListaDeJuegos.this));
                 }
 
             }
@@ -84,6 +80,5 @@ public class JuegosDisponibles extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
     }
 }
