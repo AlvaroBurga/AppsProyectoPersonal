@@ -54,9 +54,10 @@ public class OfertaDeJuegoAdapter extends RecyclerView.Adapter<OfertaDeJuegoAdap
         holder.context=context;
         holder.reference=reference.child("listaVideojuegos");
 
+        int pos = Integer.parseInt(String.valueOf(videojuego.getId()));
         holder.titulo.setText(videojuego.getTitulo());
         holder.consola.setText(videojuego.getConsola());
-        StorageReference imagen = imgRefs.get(position);
+        StorageReference imagen = imgRefs.get(pos);
         Glide.with(context).load(imagen).into(holder.imagen);
         holder.direccion.setText(videojuego.getRecojo());
         holder.dueño.setText(videojuego.getDueñoOriginal().getNombre());
