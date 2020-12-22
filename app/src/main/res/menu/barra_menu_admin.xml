@@ -3,10 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mostrarPuntos"
-        android:title="@string/mostrar_puntos"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/logout"
         android:icon="@drawable/logout"
         android:title="@string/cerrar_sesion"

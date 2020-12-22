@@ -32,9 +32,11 @@
 
     <ImageButton
         android:id="@+id/buscarTituloDisponible"
-        android:layout_width="wrap_content"
+        style="@style/AppTheme.Button"
+        android:layout_width="56dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:backgroundTint="@color/colorPrimary"
         android:contentDescription="@string/buscar"
         app:layout_constraintBottom_toBottomOf="@+id/filtroTitulo"
         app:layout_constraintStart_toEndOf="@+id/filtroTitulo"
@@ -43,10 +45,13 @@
 
     <Spinner
         android:id="@+id/buscarConsola"
+        style="@style/FirebaseUI.CountrySpinner"
         android:layout_width="329dp"
         android:layout_height="41dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="#A657DF"
+        android:foregroundTint="#ED6262"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filtroTitulo" />
 
@@ -60,4 +65,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buscarConsola" />
+
+    <TextView
+        android:id="@+id/noResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_se_encontraron_resultados"
+        android:textSize="30sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

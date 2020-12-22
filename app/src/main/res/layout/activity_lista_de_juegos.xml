@@ -21,8 +21,10 @@
 
     <ImageButton
         android:id="@+id/botonBuscarTitulo"
-        android:layout_width="wrap_content"
+        style="@style/AppTheme.Button"
+        android:layout_width="51dp"
         android:layout_height="0dp"
+        android:backgroundTint="@color/colorPrimary"
         android:contentDescription="@string/buscar"
         app:layout_constraintBottom_toBottomOf="@+id/buscarTituloTodos"
         app:layout_constraintStart_toEndOf="@+id/buscarTituloTodos"
@@ -31,18 +33,22 @@
 
     <Spinner
         android:id="@+id/consolaListaTodos"
+        style="@style/FirebaseUI.CountrySpinner"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="@+id/botonBuscarTitulo"
         app:layout_constraintStart_toStartOf="@+id/buscarTituloTodos"
         app:layout_constraintTop_toBottomOf="@+id/buscarTituloTodos" />
 
     <Spinner
         android:id="@+id/estadoListaTodos"
+        style="@style/FirebaseUI.CountrySpinner"
         android:layout_width="259dp"
         android:layout_height="42dp"
         android:layout_marginTop="24dp"
+        android:backgroundTint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="@+id/consolaListaTodos"
         app:layout_constraintStart_toStartOf="@+id/consolaListaTodos"
         app:layout_constraintTop_toBottomOf="@+id/consolaListaTodos" />
@@ -55,6 +61,21 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/estadoListaTodos" />
+
+    <TextView
+        android:id="@+id/ceroResults"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="392dp"
+        android:text="@string/no_se_encontraron_resultados"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

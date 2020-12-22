@@ -3,15 +3,24 @@ package com.example.intercambiodevideojuegos.usuario;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +35,8 @@ import android.widget.Toast;
 import com.example.intercambiodevideojuegos.R;
 import com.example.intercambiodevideojuegos.entities.Usuario;
 import com.example.intercambiodevideojuegos.entities.Videojuego;
+import com.example.intercambiodevideojuegos.general.LogueoFB;
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,7 +53,9 @@ import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class OfrecerJuegos extends AppCompatActivity {
@@ -53,6 +66,7 @@ public class OfrecerJuegos extends AppCompatActivity {
     StorageReference storage = FirebaseStorage.getInstance().getReference();
     Uri imgref = null;
     int numJuegos;
+    byte[] imbytes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +101,7 @@ public class OfrecerJuegos extends AppCompatActivity {
         final EditText direccion = findViewById(R.id.direccionOfrecer);
         final ImageView imagen = findViewById(R.id.imagenOfrecer);
         ImageButton agregarImagen = findViewById(R.id.agregarImagenOfrecer);
+        ImageButton seleccionarImagen = findViewById(R.id.seleccionarImagenOfrecer);
         Button ofrecer = findViewById(R.id.ofrecerBoton);
         final EditText otro = findViewById(R.id.otraConsolaOfrecer);
 
@@ -125,11 +140,22 @@ public class OfrecerJuegos extends AppCompatActivity {
         agregarImagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int permiso = ContextCompat.checkSelfPermission(OfrecerJuegos.this, Manifest.permission.CAMERA);
+                if (permiso== PackageManager.PERMISSION_GRANTED)
+                {
+                    tomarFoto();
+                }
+                else ActivityCompat.requestPermissions(OfrecerJuegos.this,new String[]{Manifest.permission.CAMERA},1);
+            }
+        });
+
+        seleccionarImagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("image/*"); //Permite seleccionar solo imagenes
                 startActivityForResult(intent, 2);
-
             }
         });
 
@@ -198,7 +224,9 @@ public class OfrecerJuegos extends AppCompatActivity {
                             //Obtener la imagen
                             String name = String.valueOf(numJuegos);
                             StorageReference imagenASubir=storage.child("listaVideojuegos").child(name);
-                            UploadTask uploadTask = imagenASubir.putFile(imgref);
+                            UploadTask uploadTask;
+                            if(imbytes==null) uploadTask = imagenASubir.putFile(imgref);
+                            else uploadTask = imagenASubir.putBytes(imbytes);
                             uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -214,6 +242,7 @@ public class OfrecerJuegos extends AppCompatActivity {
                             });
                             Intent intent = new Intent(getApplicationContext(),MenuUsuario.class);
                             startActivity(intent);
+                            finish();
                         }
                     });
                     builder.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
@@ -227,17 +256,93 @@ public class OfrecerJuegos extends AppCompatActivity {
             }
         });
     }
+    public void tomarFoto()
+    {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(takePictureIntent, 3);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode==1 && grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+        {
+            tomarFoto();
+        }
+        else
+        {
+            Toast.makeText(this, "No se tienen permisos", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         if (requestCode==2)
         {
-            imgref = data.getData();
-            ImageView imagen = findViewById(R.id.imagenOfrecer);
-            imagen.setImageURI(imgref);
-            imagen.setVisibility(View.VISIBLE);
+            try {
+                imgref = data.getData();
+                ImageView imagen = findViewById(R.id.imagenOfrecer);
+                imagen.setImageURI(imgref);
+                imagen.setVisibility(View.VISIBLE);
+                imbytes=null;
+            }catch (Exception e){
+                Toast.makeText(this,"no se selecciono imagen",Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        if (requestCode==3)
+        {
+            try {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                ImageView imagen = findViewById(R.id.imagenOfrecer);
+                imagen.setImageBitmap(imageBitmap);
+
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                assert imageBitmap != null;
+                imageBitmap.compress(Bitmap.CompressFormat.PNG,0,bos);
+                imbytes = bos.toByteArray();
+                imgref=null;
+                imagen.setVisibility(View.VISIBLE);
+            }catch (Exception e)
+            {
+                Toast.makeText(this,"no se selecciono imagen",Toast.LENGTH_SHORT).show();
+            }
+
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.barra_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.logout:
+                AuthUI.getInstance().signOut(getApplicationContext()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent intent = new Intent(getApplicationContext(), LogueoFB.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                break;
+
+            case R.id.mostrarPuntos:
+                Toast.makeText(getApplicationContext(),String.valueOf(sesion.getPuntos()),Toast.LENGTH_LONG).show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }

@@ -41,7 +41,7 @@
     <string name="a_adir_imagen">Añadir imagen</string>
     <string name="imagen_a_adida">Imagen añadida</string>
     <string name="accion">accion</string>
-    <string name="estado">Estado</string>
+    <string name="estado">Estado:</string>
     <string name="due_o">Dueño:</string>
     <string name="poner_nombre_y_apellido_del_due_o">Poner nombre y apellido del dueño</string>
     <string name="aceptar">aceptar</string>
@@ -51,4 +51,14 @@
     <string name="ya_verifique_mi_email">Ya verifique mi email</string>
     <string name="cerrar_sesion">Cerrar Sesion</string>
     <string name="no_hay_ofertas_pendientes">No hay ofertas pendientes</string>
+    <string name="ver_las_ofertas">Ver las ofertas</string>
+    <string name="poner_mensaje_de_bienvenida_de_la_sesion">Poner Mensaje de bienvenida de la sesion</string>
+    <string name="ver_todos_los_videojuegos">Ver todos los videojuegos</string>
+    <string name="no_se_encontraron_resultados">No se encontraron resultados</string>
+    <string name="recuperar">Recuperar</string>
+    <string name="borrar">Borrar</string>
+    <string name="detalles">Detalles</string>
+    <string name="mostrar_puntos">Mostrar puntos</string>
+    <string name="bienvenido">Bienvenido </string>
+    <string name="selecionar_imagen">Selecionar imagen</string>
 </resources>

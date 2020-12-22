@@ -7,9 +7,8 @@
 
     <TextView
         android:id="@+id/tituloVideojuegoOferta"
-        android:layout_width="68dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/titulo"
         android:textSize="24sp"
@@ -23,8 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/consola"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/tituloVideojuegoOferta"
-        app:layout_constraintStart_toStartOf="@+id/tituloVideojuegoOferta"
+        app:layout_constraintStart_toEndOf="@+id/imagenVideojuegoOferta"
         app:layout_constraintTop_toBottomOf="@+id/tituloVideojuegoOferta" />
 
     <ImageView
@@ -46,15 +44,14 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="@string/aceptar"
-        app:layout_constraintBottom_toBottomOf="@+id/dueñoOferta"
-        app:layout_constraintStart_toEndOf="@+id/direccionOferta"
-        app:layout_constraintTop_toTopOf="@+id/direccionOferta" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dueñoOferta" />
 
     <Button
         android:id="@+id/cancelarVideojuegoOferta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:text="@string/cancelar"
         app:layout_constraintBottom_toBottomOf="@+id/aceptarVideojuegoOferta"
         app:layout_constraintStart_toEndOf="@+id/aceptarVideojuegoOferta"
@@ -64,21 +61,39 @@
         android:id="@+id/direccionOferta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginStart="8dp"
         android:text="@string/direccion"
-        app:layout_constraintEnd_toEndOf="@+id/imagenVideojuegoOferta"
-        app:layout_constraintStart_toStartOf="@+id/imagenVideojuegoOferta"
-        app:layout_constraintTop_toBottomOf="@+id/imagenVideojuegoOferta" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
 
     <TextView
         android:id="@+id/dueñoOferta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
         android:text="@string/due_o2"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/direccion"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/direccionOferta"
-        app:layout_constraintStart_toStartOf="@+id/direccionOferta"
-        app:layout_constraintTop_toBottomOf="@+id/direccionOferta" />
+        app:layout_constraintStart_toStartOf="@+id/imagenVideojuegoOferta"
+        app:layout_constraintTop_toBottomOf="@+id/imagenVideojuegoOferta" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/due_o"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

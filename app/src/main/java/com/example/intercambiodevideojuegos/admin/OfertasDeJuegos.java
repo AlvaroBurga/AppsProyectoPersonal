@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,8 +18,10 @@ import com.example.intercambiodevideojuegos.R;
 import com.example.intercambiodevideojuegos.adapters.OfertaDeJuegoAdapter;
 import com.example.intercambiodevideojuegos.entities.Usuario;
 import com.example.intercambiodevideojuegos.entities.Videojuego;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.intercambiodevideojuegos.general.LogueoFB;
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,12 +33,9 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-//TODO mejorar vista
 
 public class OfertasDeJuegos extends AppCompatActivity {
 
-    Usuario sesion;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     StorageReference storage = FirebaseStorage.getInstance().getReference();
     ArrayList<Videojuego> videojuegos = new ArrayList<>();
@@ -46,6 +48,8 @@ public class OfertasDeJuegos extends AppCompatActivity {
         final ArrayList<StorageReference> imgRefs = new ArrayList<>();
         final DatabaseReference gameRef = reference.child("listaVideojuegos");
         final RecyclerView rv = findViewById(R.id.rvOfertaDeJuego);
+
+
 
         //Se obtiene la lista
         gameRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -124,17 +128,9 @@ public class OfertasDeJuegos extends AppCompatActivity {
                                         Log.d(TAG, "onCancelled: " + databaseError.getDetails()+databaseError.getMessage());
                                     }
                                 });
-
-                                //TODO notificar cuando se acepta
                             }
-                            if(videojuego.getEstado().equalsIgnoreCase("cancelado"))
-                            {
-                                //TODO notificar cuando se cancela
-                            }
-
                         }
                     }
-
                     @Override
                     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
@@ -180,6 +176,30 @@ public class OfertasDeJuegos extends AppCompatActivity {
     {
         TextView tv = findViewById(R.id.ceroOfertas);
         tv.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.barra_menu_admin,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.logout:
+                AuthUI.getInstance().signOut(getApplicationContext()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent intent = new Intent(getApplicationContext(), LogueoFB.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

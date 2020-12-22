@@ -59,23 +59,21 @@ public class MenuAdmin extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.barra_menu,menu);
+        getMenuInflater().inflate(R.menu.barra_menu_admin,menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.logout:
-                AuthUI.getInstance().signOut(getApplicationContext()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Intent intent = new Intent(getApplicationContext(), LogueoFB.class);
-                        startActivity(intent);
-                    }
-                });
-                break;
+        if (item.getItemId() == R.id.logout) {
+            AuthUI.getInstance().signOut(getApplicationContext()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Intent intent = new Intent(getApplicationContext(), LogueoFB.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
 
         return super.onOptionsItemSelected(item);

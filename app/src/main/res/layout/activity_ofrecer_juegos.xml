@@ -18,18 +18,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/titulo"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/consolaOfrecer"
+        style="@style/FirebaseUI.CountrySpinner"
         android:layout_width="258dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/tituloOfrecer" />
 
@@ -79,10 +81,11 @@
 
     <ImageButton
         android:id="@+id/agregarImagenOfrecer"
-        android:layout_width="43dp"
-        android:layout_height="31dp"
+        style="@style/AppTheme.Button"
+        android:layout_width="55dp"
+        android:layout_height="43dp"
         android:layout_marginStart="16dp"
-        android:background="#63673AB7"
+        android:backgroundTint="@color/colorPrimary"
         android:contentDescription="@string/a_adir_imagen"
         app:layout_constraintBottom_toBottomOf="@+id/cidj"
         app:layout_constraintStart_toEndOf="@+id/cidj"
@@ -95,12 +98,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/consola"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/consolaOfrecer"
-        tools:visibility="gone"
-        android:autofillHints="" />
+        tools:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/seleccionarImagenOfrecer"
+        style="@style/AppTheme.Button"
+        android:layout_width="55dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:contentDescription="@string/selecionar_imagen"
+        app:layout_constraintBottom_toBottomOf="@+id/agregarImagenOfrecer"
+        app:layout_constraintStart_toEndOf="@+id/agregarImagenOfrecer"
+        app:layout_constraintTop_toTopOf="@+id/agregarImagenOfrecer"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/galery" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

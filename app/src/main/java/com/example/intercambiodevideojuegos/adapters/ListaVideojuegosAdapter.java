@@ -8,25 +8,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.intercambiodevideojuegos.R;
 import com.example.intercambiodevideojuegos.entities.Videojuego;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 public class ListaVideojuegosAdapter extends RecyclerView.Adapter<ListaVideojuegosAdapter.ViewHolder> {
 
-    Videojuego[] videojuegos;
+    ArrayList<Videojuego> videojuegos;
     Context context;
-    String filtro;
-    String tipo;
+    ArrayList<StorageReference> imgRefs;
 
-    public ListaVideojuegosAdapter(Videojuego[] videojuegos, Context context, @Nullable String filtro, String tipo)
+    public ListaVideojuegosAdapter(ArrayList<Videojuego> videojuegos, Context context, ArrayList<StorageReference> imgRefs)
     {
         this.context=context;
         this.videojuegos=videojuegos;
-        this.filtro=filtro;
-        this.tipo=tipo;
+        this.imgRefs = imgRefs;
     }
 
 
@@ -40,56 +41,40 @@ public class ListaVideojuegosAdapter extends RecyclerView.Adapter<ListaVideojueg
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Videojuego videojuego = videojuegos[position];
-        holder.videojuego=videojuego;
+        Videojuego videojuego = videojuegos.get(position);
         holder.context=context;
-        holder.filtro=filtro;
-        holder.tipo=tipo;
+        holder.titulo.setText(videojuego.getTitulo());
+        holder.consola.setText(videojuego.getConsola());
+        holder.dueño.setText(videojuego.getDueñoOriginal().getNombre());
+        holder.estado.setText(videojuego.getEstado());
+
+        int pos = Integer.parseInt(String.valueOf(videojuego.getId()));
+        StorageReference imagen = imgRefs.get(pos);
+        Glide.with(context).load(imagen).into(holder.imagen);
     }
 
     @Override
     public int getItemCount() {
-        return videojuegos.length;
+        return videojuegos.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder
     {
-        Videojuego videojuego;
         Context context;
-        String filtro;
-        String tipo;
+        TextView titulo;
+        TextView consola;
+        ImageView imagen;
+        TextView dueño;
+        TextView estado;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+             titulo = itemView.findViewById(R.id.tituloVideojuegoAdmin);
+             consola = itemView.findViewById(R.id.videojuegoConsolaAdmin);
+             imagen = itemView.findViewById(R.id.imagenVideojuegoAdmin);
+             dueño = itemView.findViewById(R.id.dueñoNombreApellido);
+             estado = itemView.findViewById(R.id.ponerEstadoCuandoListaTodo);
 
-            //Se aplican los filtros necesarios
-            if(tipo.equalsIgnoreCase("t"))
-            {
-                if(!filtro.contains(videojuego.getTitulo())) {
-                    itemView.setVisibility(View.GONE);
-                }
-            }
-            if(tipo.equalsIgnoreCase("c"))
-            {
-                if(!filtro.contains(videojuego.getConsola())) {
-                    itemView.setVisibility(View.GONE);
-                }
-            }
-            if(!(videojuego.getEstado().equalsIgnoreCase("aceptado"))||
-                    (videojuego.getEstado().equalsIgnoreCase("intercambiado")))
-            {
-                itemView.setVisibility(View.GONE);
-            }
-
-            TextView titulo = itemView.findViewById(R.id.tituloVideojuegoAdmin);
-            TextView consola = itemView.findViewById(R.id.videojuegoConsolaAdmin);
-            ImageView imagen = itemView.findViewById(R.id.imagenVideojuegoAdmin);
-            TextView dueño = itemView.findViewById(R.id.dueñoNombreApellido);
-
-            titulo.setText(videojuego.getTitulo());
-            consola.setText(videojuego.getConsola());
-       //     imagen.setImageURI(videojuego.getFoto());
-            dueño.setText(videojuego.getDueñoOriginal().getNombre());
         }
     }
 }
