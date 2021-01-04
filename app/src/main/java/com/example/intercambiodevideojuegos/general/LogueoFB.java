@@ -41,48 +41,36 @@ public class LogueoFB extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logueo_f_b);
 
-        //Los tipos de servicio
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.GoogleBuilder().build()
-        );
+        if(user!=null)
+        {
+            verificacion();
+        }
+        else
+        {
+            //Los tipos de servicio
+            List<AuthUI.IdpConfig> providers = Arrays.asList(
+                    new AuthUI.IdpConfig.EmailBuilder().build(),
+                    new AuthUI.IdpConfig.GoogleBuilder().build()
+            );
 
-        //Se Se obtienen las sesiones
-        startActivityForResult(AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .build(),1
-        );
+            //Se Se obtienen las sesiones
+            startActivityForResult(AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(providers)
+                    .build(),1
+            );
 
-        Button verificacion = findViewById(R.id.BotonVerificado);
-        verificacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user.reload();
-                if (user.isEmailVerified())
-                {
-                    DatabaseReference userDB = reference.child("ListaUsuarios").child(user.getUid());
-                    userDB.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Usuario usuario = dataSnapshot.getValue(Usuario.class);
-                            dondeVoy(usuario);
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
+            final Button verificacion = findViewById(R.id.BotonVerificado);
+            verificacion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    verificacion();
                 }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Su email aun no se encuentra verificado",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
+            });
+        }
     }
 
+    //La respuesta del logueo
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -127,6 +115,31 @@ public class LogueoFB extends AppCompatActivity {
 
             }
         });
+    }
+
+    //Se obtiene el usuario y se verifica si es uno valido
+    public void verificacion()
+    {
+        user.reload();
+        if (user.isEmailVerified())
+        {
+            DatabaseReference userDB = reference.child("ListaUsuarios").child(user.getUid());
+            userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Usuario usuario = dataSnapshot.getValue(Usuario.class);
+                    dondeVoy(usuario);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Su email aun no se encuentra verificado",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void dondeVoy(Usuario usuario)

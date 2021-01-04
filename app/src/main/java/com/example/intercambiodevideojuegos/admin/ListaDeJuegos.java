@@ -40,7 +40,7 @@ import java.util.ArrayList;
 
 
 
-//TODO mostrar cuando no hay resultados
+
 public class ListaDeJuegos extends AppCompatActivity {
 
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();

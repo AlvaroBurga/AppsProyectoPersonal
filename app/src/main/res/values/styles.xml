@@ -13,4 +13,9 @@
         <item name="cornerSize">4dp</item>
         <item name="colorPrimary">@color/colorPrimary</item>
     </style>
+
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+
+
+    </style>
 </resources>

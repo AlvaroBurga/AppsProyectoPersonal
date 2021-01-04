@@ -6,118 +6,130 @@
     android:layout_height="match_parent"
     tools:context=".usuario.OfrecerJuegos">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="32dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/tituloOfrecer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/titulo"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/consolaOfrecer"
-        style="@style/FirebaseUI.CountrySpinner"
-        android:layout_width="258dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/colorAccent"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/tituloOfrecer" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="32dp" />
 
-    <EditText
-        android:id="@+id/direccionOfrecer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/direccion"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/otraConsolaOfrecer" />
+            <EditText
+                android:id="@+id/tituloOfrecer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/titulo"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/cidj"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/cargar_imagen_del_juego"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/imagenOfrecer" />
+            <Spinner
+                android:id="@+id/consolaOfrecer"
+                style="@style/FirebaseUI.CountrySpinner"
+                android:layout_width="258dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorAccent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/tituloOfrecer" />
 
-    <Button
-        android:id="@+id/ofrecerBoton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/ofrecer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cidj" />
+            <EditText
+                android:id="@+id/direccionOfrecer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/direccion"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/otraConsolaOfrecer" />
 
-    <ImageView
-        android:id="@+id/imagenOfrecer"
-        android:layout_width="132dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/imagen_a_adida"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/direccionOfrecer"
-        tools:srcCompat="@tools:sample/avatars" />
+            <TextView
+                android:id="@+id/cidj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/cargar_imagen_del_juego"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/imagenOfrecer" />
 
-    <ImageButton
-        android:id="@+id/agregarImagenOfrecer"
-        style="@style/AppTheme.Button"
-        android:layout_width="55dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:contentDescription="@string/a_adir_imagen"
-        app:layout_constraintBottom_toBottomOf="@+id/cidj"
-        app:layout_constraintStart_toEndOf="@+id/cidj"
-        app:layout_constraintTop_toTopOf="@+id/cidj"
-        app:layout_constraintVertical_bias="0.578"
-        app:srcCompat="@drawable/foto" />
+            <Button
+                android:id="@+id/ofrecerBoton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/ofrecer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cidj" />
 
-    <EditText
-        android:id="@+id/otraConsolaOfrecer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/consola"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/consolaOfrecer"
-        tools:visibility="gone" />
+            <ImageView
+                android:id="@+id/imagenOfrecer"
+                android:layout_width="132dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/imagen_a_adida"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/direccionOfrecer"
+                tools:srcCompat="@tools:sample/avatars" />
 
-    <ImageButton
-        android:id="@+id/seleccionarImagenOfrecer"
-        style="@style/AppTheme.Button"
-        android:layout_width="55dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="4dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:contentDescription="@string/selecionar_imagen"
-        app:layout_constraintBottom_toBottomOf="@+id/agregarImagenOfrecer"
-        app:layout_constraintStart_toEndOf="@+id/agregarImagenOfrecer"
-        app:layout_constraintTop_toTopOf="@+id/agregarImagenOfrecer"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/galery" />
+            <ImageButton
+                android:id="@+id/agregarImagenOfrecer"
+                style="@style/AppTheme.Button"
+                android:layout_width="55dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="16dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:contentDescription="@string/a_adir_imagen"
+                app:layout_constraintBottom_toBottomOf="@+id/cidj"
+                app:layout_constraintStart_toEndOf="@+id/cidj"
+                app:layout_constraintTop_toTopOf="@+id/cidj"
+                app:layout_constraintVertical_bias="0.578"
+                app:srcCompat="@drawable/foto" />
+
+            <EditText
+                android:id="@+id/otraConsolaOfrecer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/consola"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/consolaOfrecer"
+                tools:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/seleccionarImagenOfrecer"
+                style="@style/AppTheme.Button"
+                android:layout_width="55dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:contentDescription="@string/selecionar_imagen"
+                app:layout_constraintBottom_toBottomOf="@+id/agregarImagenOfrecer"
+                app:layout_constraintStart_toEndOf="@+id/agregarImagenOfrecer"
+                app:layout_constraintTop_toTopOf="@+id/agregarImagenOfrecer"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/galery" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

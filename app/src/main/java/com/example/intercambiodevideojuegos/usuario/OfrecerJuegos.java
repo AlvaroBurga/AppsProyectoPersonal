@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -58,6 +59,7 @@ import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+//todo ver el savedInstanceState
 public class OfrecerJuegos extends AppCompatActivity {
 
     Usuario sesion;
@@ -343,6 +345,42 @@ public class OfrecerJuegos extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        // Save in savedInstanceState.
+        savedInstanceState.putByteArray("imbytes",imbytes);
+        if (imgref != null) savedInstanceState.putString("uri",imgref.toString());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state from the savedInstanceState.
+
+        if(savedInstanceState != null) {
+            ImageView imagen = findViewById(R.id.imagenOfrecer);
+            Log.d("prueba", "onRestoreInstanceState:"+ "llegue aqui");
+            imbytes = savedInstanceState.getByteArray("imbytes");
+            if (imbytes!= null)
+            {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imbytes,0,imbytes.length);
+                imagen.setImageBitmap(bitmap);
+                imagen.setVisibility(View.VISIBLE);
+            }
+            String aux = savedInstanceState.getString("uri");
+            if (aux != null)
+            {
+                imgref=Uri.parse(aux);
+                imagen.setImageURI(imgref);
+                imagen.setVisibility(View.VISIBLE);
+            }
+        }
+
     }
 
 }

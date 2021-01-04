@@ -61,4 +61,5 @@
     <string name="mostrar_puntos">Mostrar puntos</string>
     <string name="bienvenido">Bienvenido </string>
     <string name="selecionar_imagen">Selecionar imagen</string>
+    <string name="no_presenta_juegos_ofrecidos">No presenta juegos ofrecidos</string>
 </resources>

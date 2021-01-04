@@ -6,75 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".usuario.JuegosDisponibles">
 
-    <EditText
-        android:id="@+id/filtroTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="@string/buscar_titulo"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        android:autofillHints="" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/juegos_disponibles"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/filtroTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/buscar_titulo"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <ImageButton
-        android:id="@+id/buscarTituloDisponible"
-        style="@style/AppTheme.Button"
-        android:layout_width="56dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:contentDescription="@string/buscar"
-        app:layout_constraintBottom_toBottomOf="@+id/filtroTitulo"
-        app:layout_constraintStart_toEndOf="@+id/filtroTitulo"
-        app:layout_constraintTop_toTopOf="@+id/filtroTitulo"
-        app:srcCompat="@drawable/lupa" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/juegos_disponibles"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/buscarConsola"
-        style="@style/FirebaseUI.CountrySpinner"
-        android:layout_width="329dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#A657DF"
-        android:foregroundTint="#ED6262"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filtroTitulo" />
+            <ImageButton
+                android:id="@+id/buscarTituloDisponible"
+                style="@style/AppTheme.Button"
+                android:layout_width="56dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:contentDescription="@string/buscar"
+                app:layout_constraintBottom_toBottomOf="@+id/filtroTitulo"
+                app:layout_constraintStart_toEndOf="@+id/filtroTitulo"
+                app:layout_constraintTop_toTopOf="@+id/filtroTitulo"
+                app:srcCompat="@drawable/lupa" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaJuegosDisponiblesU"
-        android:layout_width="409dp"
-        android:layout_height="555dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buscarConsola" />
+            <Spinner
+                android:id="@+id/buscarConsola"
+                style="@style/FirebaseUI.CountrySpinner"
+                android:layout_width="329dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#A657DF"
+                android:foregroundTint="#ED6262"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filtroTitulo" />
 
-    <TextView
-        android:id="@+id/noResults"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/no_se_encontraron_resultados"
-        android:textSize="30sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listaJuegosDisponiblesU"
+                android:layout_width="409dp"
+                android:layout_height="555dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buscarConsola" />
+
+            <TextView
+                android:id="@+id/noResults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_se_encontraron_resultados"
+                android:textSize="30sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
