@@ -86,7 +86,8 @@ public class JuegosDisponibles extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     Videojuego videojuego = ds.getValue(Videojuego.class);
-                    if(videojuego.getEstado().equalsIgnoreCase("aceptado")) videojuegos.add(videojuego); //Solo se muestran los aceptados
+                    if(videojuego.getEstado().equalsIgnoreCase("aceptado") &&
+                            (!videojuego.getDueñoOriginal().getId().equalsIgnoreCase(user.getUid()))) videojuegos.add(videojuego); //Solo se muestran los aceptados
                     imgRefs.add(storage.child("listaVideojuegos").child(ds.getKey()));
                 }
 
